@@ -4,10 +4,11 @@ import (
 	"bytes"
 	"encoding/binary"
 	"errors"
-	"github.com/zz/gm/sm3"
-	"github.com/zz/gm/util"
 	"hash"
 	"math/big"
+
+	"github.com/fo2w/gm/sm3"
+	"github.com/fo2w/gm/util"
 )
 
 type ExchangeResult struct {

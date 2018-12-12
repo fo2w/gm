@@ -7,11 +7,12 @@ import (
 	"encoding/asn1"
 	"encoding/binary"
 	"errors"
-	"github.com/zz/gm/sm3"
-	"github.com/zz/gm/util"
 	"hash"
 	"io"
 	"math/big"
+
+	"github.com/fo2w/gm/sm3"
+	"github.com/fo2w/gm/util"
 )
 
 const (
@@ -48,8 +49,8 @@ type sm2Signature struct {
 
 type sm2Cipher struct {
 	X, Y *big.Int
-	C3 []byte
-	C2 []byte
+	C3   []byte
+	C2   []byte
 }
 
 func init() {
@@ -233,7 +234,7 @@ func MarshalCipher(in []byte) ([]byte, error) {
 	byteLen := (sm2P256V1.Params().BitSize + 7) >> 3
 	c1x := make([]byte, byteLen)
 	c1y := make([]byte, byteLen)
-	c2Len := len(in) - (1 + byteLen * 2) - sm3.DigestLength
+	c2Len := len(in) - (1 + byteLen*2) - sm3.DigestLength
 	c2 := make([]byte, c2Len)
 	c3 := make([]byte, sm3.DigestLength)
 	pos := 1
@@ -271,7 +272,7 @@ func UnmarshalCipher(in []byte) (out []byte, err error) {
 	c1yLen := len(c1y)
 	c2Len := len(cipher.C2)
 	c3Len := len(cipher.C3)
-	result := make([]byte, 1 + c1xLen + c1yLen + c2Len + c3Len)
+	result := make([]byte, 1+c1xLen+c1yLen+c2Len+c3Len)
 	pos := 0
 
 	result[pos] = 4

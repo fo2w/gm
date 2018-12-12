@@ -5,8 +5,9 @@ import (
 	"crypto/cipher"
 	"encoding/hex"
 	"fmt"
-	"github.com/zz/gm/util"
 	"testing"
+
+	"github.com/fo2w/gm/util"
 )
 
 type sm4CbcTestData struct {
